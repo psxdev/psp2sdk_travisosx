@@ -1,7 +1,4 @@
-  language:
-    - cpp
-
-os:
+  os:
     - osx
     - linux
 
