@@ -1,5 +1,5 @@
   language:
-    - cpp
+    - objective-c
 
 os:
     - osx
