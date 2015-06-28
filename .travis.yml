@@ -12,16 +12,17 @@ script:
  - export REV=dirty-$(git describe --always)
  - mkdir dist
  - mkdir -p tools/buildxcode
- - cd  $TOP/tools/buildxcode 
+ - cd  tools/buildxcode 
  - cmake -G "Xcode" .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release 
  - ls -l
  - xcodebuild -list
  - xcodebuild -target psp2-fixup -configuration Release
  - xcodebuild -target install -configuration Release
- - cd $PREFIX
+ - cd ../../dist
  - ls -l
  - ls -l bin
- - brew info gcc-arm-none-eabi
+ - arm-none-eabi-gcc --version
+ - which arm-none-eabi-gcc
 
 env:
  global:
