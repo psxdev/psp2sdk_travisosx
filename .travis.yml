@@ -15,6 +15,7 @@ script:
  - cd  $TOP/tools/buildxcode 
  - cmake -G "Xcode" .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release 
  - ls -l
+ - xcodebuild -list
  - xcodebuild -target psp2-fixup -configuration Release -scheme install
  - cd $PREFIX
  - ls -l
