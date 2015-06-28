@@ -16,10 +16,12 @@ script:
  - cmake -G "Xcode" .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release 
  - ls -l
  - xcodebuild -list
- - xcodebuild -target psp2-fixup -configuration Release -scheme install
+ - xcodebuild -target psp2-fixup -configuration Release
+ - xcodebuild -target install -configuration Release
  - cd $PREFIX
  - ls -l
  - ls -l bin
+ - brew info gcc-arm-none-eabi
 
 env:
  global:
