@@ -14,7 +14,6 @@ script:
  - mkdir -p tools/buildxcode
  - cd  $TOP/tools/buildxcode 
  - cmake -G "Xcode" .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release 
- - cat /Users/travis/build/psxdev/psp2sdk_travisosx/tools/buildxcode/CMakeFiles/CMakeOutput.log
  - ls -l
  - xcodebuild -target psp2-fixup -configuration Release -scheme install
  - cd $PREFIX
