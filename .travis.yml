@@ -6,7 +6,7 @@ compiler:
 language: objective-c
 
 before_install:
- - brew update && brew outdated gcc-arm-none-eabi || brew upgrade gcc-arm-none-eabi && brew outdated cmake || brew upgrade cmake
+ - brew update && brew outdated arm-none-eabi-gcc || brew upgrade arm-none-eabi-gcc && brew outdated cmake || brew upgrade cmake
 
 script:
  - export REV=dirty-$(git describe --always)
