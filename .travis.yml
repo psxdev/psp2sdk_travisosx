@@ -11,7 +11,7 @@ before_install:
 script:
  - export REV=dirty-$(git describe --always)
  - mkdir out
- - mkdir -p tool/buildxcode
+ - mkdir -p tools/buildxcode
  - push tools/buildxcode 
  - cmake -G "Xcode" .. -DCMAKE_INSTALL_PREFIX=$(PATH_INSTALL) -DCMAKE_BUILD_TYPE=Release 
  - xcodebuild -target psp2-fixup -configuration Release -scheme install

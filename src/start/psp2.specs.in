@@ -1,0 +1,28 @@
+%rename cpp old_cpp
+%rename cc1 old_cc1
+%rename cc1plus old_cc1plus
+%rename link old_link
+
+*cpp:
+%(old_cpp) -I%(path)/include
+
+*cc1:
+%(old_cc1) %(cpu)
+
+*cc1plus:
+%(old_cc1plus) -I%(path)/include %(cpu)
+
+*link:
+%(old_link) -q -T%(path)/psp2.x%s -L%(path)/lib
+
+*lib:
+--start-group -lSceKernel_stub --end-group
+
+*cpu:
+-mcpu=cortex-a9 -mfpu=neon-fp16
+
+*startfile:
+crt0%O%s
+
+*path:
+@prefix@
