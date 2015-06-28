@@ -6,10 +6,12 @@ compiler:
 language: objective-c
 
 before_install:
- - brew update && brew outdated arm-none-eabi-gcc || brew upgrade arm-none-eabi-gcc && brew outdated cmake || brew upgrade cmake
-
+ - brew update && brew outdated cmake || brew upgrade cmake
 script:
  - export REV=dirty-$(git describe --always)
+ - wget http://skylink.dl.sourceforge.net/project/devkitpro/devkitARM/devkitARM_r44/devkitARM_r44-osx.tar.bz2
+ - tar xf devkitARM_r44-osx.tar.bz2
+ - export PATH=$TOP/devkitARM/bin:$PATH
  - mkdir dist
  - mkdir -p tools/buildxcode
  - cd  tools/buildxcode 
@@ -18,16 +20,18 @@ script:
  - xcodebuild -list
  - xcodebuild -target psp2-fixup -configuration Release
  - xcodebuild -target install -configuration Release
+ - cd ../../src
+ - mkdir buildxcode
+ - cd buildxcode
+ - cmake .. -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchain-arm-none-eabi-psp2.cmake -DCMAKE_BUILD_TYPE=Release
+ - make install
  - cd ../../dist
- - ls -l
- - ls -l bin
- - arm-none-eabi-gcc --version
- - which arm-none-eabi-gcc
-
+ - ls -l lib include include/psp2 bin
 env:
  global:
   - TOP=$PWD
   - PREFIX=$TOP/dist 
+
 
 
 
